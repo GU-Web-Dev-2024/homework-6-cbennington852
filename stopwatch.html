@@ -58,6 +58,7 @@
             function applyStyling() {
                 //get pragpragh add id named timer
                 $('p').attr('id', 'timer');
+                //apply class and styling to timer
                 $('#timer').attr('class', 'timer-background').css({
                     'border-radius': '15px',
                     'width': '200px',
@@ -65,7 +66,13 @@
                     'background-color': defaultStopColor,
                     'text-align': 'center'
                 });
-
+                //apply styling to buttons
+                $('button').css({
+                   'background-color' :  'grey',
+                    'box-shadow': '0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)',
+                    'border-radius': '15px',
+                    'color':'white',
+                });
             }
 
             function startTimer() {
