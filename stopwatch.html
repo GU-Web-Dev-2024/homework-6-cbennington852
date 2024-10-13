@@ -23,16 +23,25 @@
             var $buttonStop = $("#button-stop");
             var $buttonReset = $("#button-reset")
             var interval;
+            const defaultStopColor = "grey";
 
             applyStyling();
 
             $buttonStart.on("click", function () {
                 clearInterval(interval);
                 interval = setInterval(startTimer, 10);
+
+                //style the stopwatch green
+                $(".timer-background").css({
+                    'background-color': 'rgb(51,165, 50)'
+                });
             });
 
             $buttonStop.on("click", function () {
                 clearInterval(interval);
+                $(".timer-background").css({
+                    'background-color': 'red'
+                });
             });
 
             $buttonReset.on("click", function () {
@@ -41,6 +50,9 @@
                 seconds = "00";
                 $appendTens.text(tens);
                 $appendSeconds.text(seconds);
+                $(".timer-background").css({
+                    'background-color': defaultStopColor
+                });
             });
 
             function applyStyling() {
@@ -50,7 +62,7 @@
                     'border-radius': '15px',
                     'width': '200px',
                     'height': '20px',
-                    'background-color': 'grey',
+                    'background-color': defaultStopColor,
                     'text-align': 'center'
                 });
 
