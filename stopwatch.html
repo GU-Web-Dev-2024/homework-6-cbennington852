@@ -23,6 +23,7 @@
             var $buttonStop = $("#button-stop");
             var $buttonReset = $("#button-reset")
             var interval;
+            var pulse = false;
             const defaultStopColor = "grey";
 
             applyStyling();
@@ -30,6 +31,8 @@
             $buttonStart.on("click", function () {
                 clearInterval(interval);
                 interval = setInterval(startTimer, 10);
+                pulse = true;
+                $('.timer-background').stop(true, false);
 
                 //style the stopwatch green
                 $(".timer-background").css({
@@ -38,6 +41,7 @@
             });
 
             $buttonStop.on("click", function () {
+                pulse = false;
                 clearInterval(interval);
                 $(".timer-background").css({
                     'background-color': 'red'
@@ -46,6 +50,8 @@
 
             $buttonReset.on("click", function () {
                 clearInterval(interval);
+                pulse = false;
+                $('.timer-background').stop(true, false);
                 tens = "00";
                 seconds = "00";
                 $appendTens.text(tens);
@@ -75,8 +81,28 @@
                 });
             }
 
+            function pulseAnimation (tens) {
+                console.log(pulse)
+                if (pulse === false)
+                {
+                    $('.timer-background').stop(true, false);
+                }
+                else if (tens % 2) { //checks to see if odd
+                    $('.timer-background').animate({
+                        opacity: 0.8,
+                    });
+                }
+                else {
+                    $('.timer-background').animate({
+                        opacity: 1,
+                    });
+                }
+            }
+
             function startTimer() {
                 tens++;
+                //call pulse animation
+                pulseAnimation(tens);
 
                 if (tens < 9) {
                     $appendTens.text("0" + tens);
