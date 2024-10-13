@@ -24,6 +24,8 @@
             var $buttonReset = $("#button-reset")
             var interval;
 
+            applyStyling();
+
             $buttonStart.on("click", function () {
                 clearInterval(interval);
                 interval = setInterval(startTimer, 10);
@@ -40,6 +42,19 @@
                 $appendTens.text(tens);
                 $appendSeconds.text(seconds);
             });
+
+            function applyStyling() {
+                //get pragpragh add id named timer
+                $('p').attr('id', 'timer');
+                $('#timer').attr('class', 'timer-background').css({
+                    'border-radius': '15px',
+                    'width': '200px',
+                    'height': '20px',
+                    'background-color': 'grey',
+                    'text-align': 'center'
+                });
+
+            }
 
             function startTimer() {
                 tens++;
